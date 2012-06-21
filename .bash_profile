@@ -8,7 +8,13 @@ alias bob="php artisan bob::build"
 alias composer="php composer.phar"
 
 # $1 should be the file to recursively remove
-function rmr() { find . -name '$1' -exec rm -rf {} \;; }
+function rmr() { 
+  if [ $# == 1 ]; then
+    find . -name "$1" -exec rm -rf {} \;;
+  else
+    echo "filename required";
+  fi
+}
 
 ##############################
 # 1 Argument
@@ -19,11 +25,12 @@ function rmr() { find . -name '$1' -exec rm -rf {} \;; }
 # $2 is remove server address
 ##############################
 function sshkeycopy() { 
-  if [ -z "$2" ]
-  then
+  if [ $# == 2 ]; then
     cat ~/.ssh/id_rsa.pub | ssh $1 "mkdir ~/.ssh ; cat - >> ~/.ssh/authorized_keys";
-  else
+  elif [ $# == 1 ]; then
     cat $1 | ssh $2 "mkdir ~/.ssh; cat - >> ~/.ssh/authorized_keys";
+  else
+    echo "remote server address required";
   fi
 }
 
