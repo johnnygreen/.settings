@@ -10,17 +10,17 @@ alias composer="php composer.phar"
 # $1 should be the file to recursively remove
 function rmr() { 
   if [ $# == 1 ]; then
-    find . -name "$1" -exec rm -rf {} \;;
+    find . -name $1 -exec rm -rf {} \;;
   else
     echo "filename required";
   fi
 }
 
 ##############################
-# 1 Argument
+# 1 argument
 # $1 is remote server address
 #
-# 2 Arguments 
+# 2 arguments 
 # $1 is local file
 # $2 is remove server address
 ##############################
@@ -31,6 +31,15 @@ function sshkeycopy() {
     cat $1 | ssh $2 "mkdir ~/.ssh; cat - >> ~/.ssh/authorized_keys";
   else
     echo "remote server address required";
+  fi
+}
+
+# my grep
+function mgrep() {
+  if [ $# == 1 ]; then
+    grep -irl $1 .;
+  else
+    echo "search term required";
   fi
 }
 
