@@ -41,4 +41,4 @@ export PS1="\u@\h:\w$ "
 source ~/.git-completion.bash
 
 # include rvm
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" # Load RVM function
