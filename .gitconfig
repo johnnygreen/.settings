@@ -1,16 +1,17 @@
 [color]
-	status = true
-	branch = true
-	ui = true
-	diff = true
-	interactive = true
+  status      = true
+  branch      = true
+  ui          = true
+  diff        = true
+  interactive = true
 [user]
-	email = johnnygreen@gmail.com
-	name = Johnny Green
+  email   = johnnygreen@gmail.com
+  name    = Johnny Green
 [github]
-	user = johnnygreen
+  user    = johnnygreen
 [alias]
-    	history = log --graph --all --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%cr)%C(reset) %C(white)%s%C(reset) %C(bold white)— %cn%C(reset)%C(bold yellow)%d%C(reset)' --abbrev-commit --date=relative --date-order
-	unstage = reset HEAD --
+  history = log --graph --all --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%cr)%C(reset) %C(white)%s%C(reset) %C(bold white)— %cn%C(reset)%C(bold yellow)%d%C(reset)' --abbrev-commit --date=relative --date-order
+  unstage = reset HEAD --
+  addall  = add -u
 [heroku]
-	account = mzwallace
+  account = mzwallace
