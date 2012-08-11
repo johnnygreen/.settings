@@ -5,7 +5,7 @@ alias showhidden="defaults write com.apple.finder AppleShowAllFiles TRUE && kill
 alias hidehidden="defaults write com.apple.finder AppleShowAllFiles FALSE && killall Finder"
 alias artisan="php artisan"
 alias bob="php artisan bob::build"
-alias composer="php composer.phar"
+alias composer="php /usr/local/bin/composer.phar"
 
 # $1 should be the file to recursively remove
 function rmr() { 
