@@ -15,3 +15,5 @@
   addall  = add -u
 [heroku]
   account = mzwallace
+[credential]	
+  helper = osxkeychain
