@@ -49,5 +49,9 @@ export PS1="\u@\h:\w$ "
 # add autocompletion for git commands
 source ~/.git-completion.bash
 
+# Increases the open file descriptor limit, helps avoid errors when 
+# running watch processes on a large number of files
+ulimit -n 1024
+
 # include rvm
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" # Load RVM function
