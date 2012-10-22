@@ -16,3 +16,5 @@
   account     = mzwallace
 [credential]	
   helper      = osxkeychain
+[push]
+	default = matching
