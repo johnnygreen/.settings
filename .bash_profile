@@ -9,11 +9,9 @@ alias composer="php /usr/local/bin/composer.phar"
 
 # daily routines 
 function good() {
-  if [ $1 == "morning" ]; then
+  if [ "$1" == "morning" ]; then
     brew up && brew upgrade && brew cleanup && sudo npm update -g && sudo gem update && brew doctor;
-  fi
-
-  if [ $2 == "night" ]; then
+  elif [ "$1" == "night" ]; then
     echo "go fuck yourself";
   fi
 }
