@@ -55,3 +55,6 @@ ulimit -n 1024
 
 # include rvm
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" # Load RVM function
+
+MYSQL=/usr/local/mysql/bin
+export PATH=$PATH:$MYSQL
