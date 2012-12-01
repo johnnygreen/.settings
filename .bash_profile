@@ -7,6 +7,15 @@ alias artisan="php artisan"
 alias bob="php artisan bob::build"
 alias composer="php /usr/local/bin/composer.phar"
 
+# daily routines 
+function good() {
+  if [ "$1" == "morning" ]; then
+    brew up && brew upgrade && brew cleanup && sudo npm update -g && sudo gem update && brew doctor;
+  elif [ "$1" == "night" ]; then
+    echo "go fuck yourself";
+  fi
+}
+
 # $1 should be the file to recursively remove
 function rmr() { 
   if [ $# == 1 ]; then
