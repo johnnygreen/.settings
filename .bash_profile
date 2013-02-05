@@ -25,6 +25,15 @@ function rmr() {
   fi
 }
 
+function chmodwebr {
+  if [ $# == 1 ]; then
+    for i in `find $1 -type d`; do  chmod 755 $i; done
+    for i in `find $1 -type f`; do  chmod 644 $i; done
+  else
+    echo "file or folder required";
+  fi
+}
+
 ##############################
 # 1 argument
 # $1 is remote server address
