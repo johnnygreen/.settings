@@ -4,6 +4,7 @@ alias flushdns="dscacheutil -flushcache"
 alias showhidden="defaults write com.apple.finder AppleShowAllFiles TRUE && killall Finder"
 alias hidehidden="defaults write com.apple.finder AppleShowAllFiles FALSE && killall Finder"
 alias artisan="php artisan"
+alias d="bundle exec derecho"
 
 # daily routines 
 function good() {
@@ -74,3 +75,12 @@ ulimit -n 1024
 
 MYSQL=/usr/local/mysql/bin
 export PATH=$PATH:$MYSQL
+
+# {{{
+# Node Completion - Auto-generated, do not touch.
+shopt -s progcomp
+for f in $(command ls ~/.node-completion); do
+  f="$HOME/.node-completion/$f"
+  test -f "$f" && . "$f"
+done
+# }}}
