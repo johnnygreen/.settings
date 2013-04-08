@@ -9,9 +9,14 @@ alias d="bundle exec derecho"
 # daily routines 
 function good() {
   if [ "$1" == "morning" ]; then
+    echo "";
+    echo "  GOOD MORNING YOU ASSHOLE!"
+    echo "";
     brew up && brew upgrade && brew cleanup && sudo npm update -g && sudo gem update && brew doctor;
   elif [ "$1" == "night" ]; then
-    echo "go fuck yourself";
+    echo "";
+    echo "  NO! Your face is a good night!";
+    echo "";
   fi
 }
 
@@ -20,16 +25,24 @@ function rmr() {
   if [ $# == 1 ]; then
     find . -name $1 -exec rm -rf {} \;;
   else
-    echo "filename required";
+    echo "";
+    echo "  Recursively delete a file in your cwd."
+    echo "";
+    echo "  rmr [filename]";
+    echo "";
   fi
 }
 
-function chmodwebr {
+function chmod-web-recursive {
   if [ $# == 1 ]; then
     for i in `find $1 -type d`; do  chmod 755 $i; done
     for i in `find $1 -type f`; do  chmod 644 $i; done
   else
-    echo "file or folder required";
+    echo "";
+    echo "  Chmod a root folder and all children to web ready permissions.";
+    echo "";
+    echo "  chmod-web-recursive [root folder]";
+    echo "";
   fi
 }
 
@@ -41,13 +54,18 @@ function chmodwebr {
 # $1 is local file
 # $2 is remove server address
 ##############################
-function sshkeycopy() { 
+function ssh-key-copy() { 
   if [ $# == 2 ]; then
     cat ~/.ssh/id_rsa.pub | ssh $1 "mkdir ~/.ssh ; cat - >> ~/.ssh/authorized_keys";
   elif [ $# == 1 ]; then
     cat $1 | ssh $2 "mkdir ~/.ssh; cat - >> ~/.ssh/authorized_keys";
   else
-    echo "remote server address required";
+    echo "";
+    echo "  Copy your ssh key to the authorized_keys file on a remote server.";
+    echo "";
+    echo "  ssh-key-copy [user@address]           - copies ~/.ssh/id_rsa.pub to a remote server";
+    echo "  ssh-key-copy [keyfile] [user@address] - copies the file you specify to a remote server";
+    echo "";
   fi
 }
 
@@ -56,15 +74,16 @@ function mgrep() {
   if [ $# == 1 ]; then
     grep -irl $1 .;
   else
-    echo "search term required";
+    echo "";
+    echo "  My Grep, adds -irl to the normal grep command."
+    echo "";
+    echo "  mgrep [shit]";
+    echo "";
   fi
 }
 
 # change the prompt to jgreen@server:/directory$ 
 export PS1="\u@\h:\w$ "
-
-# add autocompletion for git commands
-source ~/.git-completion.bash
 
 # Increases the open file descriptor limit, helps avoid errors when 
 # running watch processes on a large number of files
@@ -76,11 +95,12 @@ ulimit -n 1024
 MYSQL=/usr/local/mysql/bin
 export PATH=$PATH:$MYSQL
 
-# {{{
-# Node Completion - Auto-generated, do not touch.
+# autocompletion
 shopt -s progcomp
 for f in $(command ls ~/.node-completion); do
   f="$HOME/.node-completion/$f"
   test -f "$f" && . "$f"
 done
-# }}}
+source ~/.git-completion.bash
+source `brew --prefix`/Library/Contributions/brew_bash_completion.sh
+
