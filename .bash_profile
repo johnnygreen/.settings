@@ -9,27 +9,34 @@ alias d="bundle exec derecho"
 # daily routines 
 function good() {
   if [ "$1" == "morning" ]; then
-    echo "";
+    echo ""
     echo "  GOOD MORNING YOU ASSHOLE!"
-    echo "";
-    brew up && brew upgrade && brew cleanup && sudo npm update -g && sudo gem update && brew doctor;
+    echo ""
+    brew up
+    brew upgrade
+    brew cleanup
+    brew doctor 
+    sudo npm update npm -g 
+    sudo npm update -g 
+    sudo gem update --system
+    sudo gem update
   elif [ "$1" == "night" ]; then
-    echo "";
-    echo "  NO! Your face is a good night!";
-    echo "";
+    echo ""
+    echo "  NO! Your face is a good night!"
+    echo ""
   fi
 }
 
 # $1 should be the file to recursively remove
 function rmr() { 
   if [ $# == 1 ]; then
-    find . -name $1 -exec rm -rf {} \;;
+    find . -name $1 -exec rm -rf {} \;
   else
-    echo "";
+    echo ""
     echo "  Recursively delete a file in your cwd."
-    echo "";
-    echo "  rmr [filename]";
-    echo "";
+    echo ""
+    echo "  rmr [filename]"
+    echo ""
   fi
 }
 
@@ -38,11 +45,11 @@ function chmod-web-recursive {
     for i in `find $1 -type d`; do  chmod 755 $i; done
     for i in `find $1 -type f`; do  chmod 644 $i; done
   else
-    echo "";
-    echo "  Chmod a root folder and all children to web ready permissions.";
-    echo "";
-    echo "  chmod-web-recursive [root folder]";
-    echo "";
+    echo ""
+    echo "  Chmod a root folder and all children to web ready permissions."
+    echo ""
+    echo "  chmod-web-recursive [root folder]"
+    echo ""
   fi
 }
 
@@ -56,29 +63,29 @@ function chmod-web-recursive {
 ##############################
 function ssh-key-copy() { 
   if [ $# == 2 ]; then
-    cat ~/.ssh/id_rsa.pub | ssh $1 "mkdir ~/.ssh ; cat - >> ~/.ssh/authorized_keys";
+    cat ~/.ssh/id_rsa.pub | ssh $1 "mkdir ~/.ssh ; cat - >> ~/.ssh/authorized_keys"
   elif [ $# == 1 ]; then
-    cat $1 | ssh $2 "mkdir ~/.ssh; cat - >> ~/.ssh/authorized_keys";
+    cat $1 | ssh $2 "mkdir ~/.ssh; cat - >> ~/.ssh/authorized_keys"
   else
-    echo "";
-    echo "  Copy your ssh key to the authorized_keys file on a remote server.";
-    echo "";
-    echo "  ssh-key-copy [user@address]           - copies ~/.ssh/id_rsa.pub to a remote server";
-    echo "  ssh-key-copy [keyfile] [user@address] - copies the file you specify to a remote server";
-    echo "";
+    echo ""
+    echo "  Copy your ssh key to the authorized_keys file on a remote server."
+    echo ""
+    echo "  ssh-key-copy [user@address]           - copies ~/.ssh/id_rsa.pub to a remote server"
+    echo "  ssh-key-copy [keyfile] [user@address] - copies the file you specify to a remote server"
+    echo ""
   fi
 }
 
 # my grep
 function mgrep() {
   if [ $# == 1 ]; then
-    grep -irl $1 .;
+    grep -irl $1 .
   else
-    echo "";
+    echo ""
     echo "  My Grep, adds -irl to the normal grep command."
-    echo "";
-    echo "  mgrep [shit]";
-    echo "";
+    echo ""
+    echo "  mgrep [shit]"
+    echo ""
   fi
 }
 
