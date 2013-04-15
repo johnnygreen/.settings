@@ -24,6 +24,7 @@ function good() {
     echo ""
     echo "  NO! Your face is a good night!"
     echo ""
+    diskutil repairPermissions /
   fi
 }
 
