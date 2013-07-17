@@ -1,3 +1,4 @@
+
 # aliases
 alias ll="ls -laFG"
 alias flushdns="dscacheutil -flushcache"
