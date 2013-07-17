@@ -28,6 +28,19 @@ function good() {
   fi
 }
 
+function webroot() {
+  if [ $# == 1 ]; then
+    rm /Library/Webserver/Documents
+    ln -s "$1" /Library/Webserver/Documents
+  else
+    echo ""
+    echo "Change the Apache Webroot"
+    echo ""
+    echo "webroot [directory]"
+    echo ""
+  fi
+}
+
 # $1 should be the file to recursively remove
 function rmr() { 
   if [ $# == 1 ]; then
@@ -104,11 +117,6 @@ MYSQL=/usr/local/mysql/bin
 export PATH=$PATH:$MYSQL
 
 # autocompletion
-shopt -s progcomp
-for f in $(command ls ~/.node-completion); do
-  f="$HOME/.node-completion/$f"
-  test -f "$f" && . "$f"
-done
 source ~/.git-completion.bash
 source `brew --prefix`/Library/Contributions/brew_bash_completion.sh
 
