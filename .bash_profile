@@ -30,8 +30,14 @@ function good() {
 
 function webroot() {
   if [ $# == 1 ]; then
-    rm /Library/Webserver/Documents
-    ln -s "$1" /Library/Webserver/Documents
+    DIRECTORY=`cd "$1";pwd`
+    DOCUMENTS=/Library/WebServer/Documents
+    
+    if [ -d "$DOCUMENTS" ]; then
+      sudo rm -rf "$DOCUMENTS"
+    fi
+
+    sudo ln -s "$DIRECTORY" "$DOCUMENTS"
   else
     echo ""
     echo "Change the Apache Webroot"
@@ -56,8 +62,8 @@ function rmr() {
 
 function chmod-web-recursive {
   if [ $# == 1 ]; then
-    for i in `find $1 -type d`; do  chmod 755 $i; done
-    for i in `find $1 -type f`; do  chmod 644 $i; done
+    for i in `find $1 -type d`; do chmod 755 $i; done
+    for i in `find $1 -type f`; do chmod 644 $i; done
   else
     echo ""
     echo "  Chmod a root folder and all children to web ready permissions."
