@@ -3,6 +3,7 @@
 LOG=/Users/mcepis/backup.log
 SOURCE=/Users/mcepis/
 DESTINATION=/Volumes/LaCie/Computer\ Backup
+OPTIONS="s|status|r|run|sync|src|source|dst|destination"
 
 if [ $# == 1 ]; then
   case "$1" in
@@ -10,7 +11,7 @@ if [ $# == 1 ]; then
     DIVISOR=`du -sh "$SOURCE" | grep -oE '\d+'`
     DIVIDEND=`du -sh "$DESTINATION" | grep -oE '\d+'`
     QUOTIENT=`echo "scale=6;($DIVIDEND/$DIVISOR)*100" | bc -l`
-    
+
     echo ""
     echo "Backup System"
     echo ""
@@ -31,7 +32,14 @@ if [ $# == 1 ]; then
     # this erases the log first, then logs the latest backup
     echo "" > "$LOG"
     echo "$(date) - Starting Backup" | tee "$LOG"
-    rsync -v -a "$SOURCE" "$DESTINATION" | tee "$LOG"
+    rsync -avz "$SOURCE" "$DESTINATION" | tee "$LOG"
+    echo "" | tee "$LOG"
+    ;;
+  sync)
+    # this erases the log first, then logs the latest backup
+    echo "" > "$LOG"
+    echo "$(date) - Starting Backup" | tee "$LOG"
+    rsync -avz --delete "$SOURCE" "$DESTINATION" | tee "$LOG"
     echo "" | tee "$LOG"
     ;;
   src|source)
@@ -41,8 +49,8 @@ if [ $# == 1 ]; then
     echo "$DESTINATION"
     ;;
   *)
-    echo "" 
-    echo "Not a valid option. Usage: backup [s|status|r|run|src|source|dst|destination]."
+    echo ""
+    echo "Not a valid option. Usage: backup [$OPTIONS]."
     echo ""
     ;;
   esac
@@ -50,7 +58,7 @@ else
   echo ""
   echo "Backup System"
   echo ""
-  echo "backup [s|status|r|run|src|source|dst|destination]"
+  echo "backup [$OPTIONS]"
   echo ""
   echo "Source:      $SOURCE"
   echo "Destination: $DESTINATION"
