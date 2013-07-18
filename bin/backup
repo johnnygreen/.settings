@@ -38,7 +38,7 @@ if [ $# == 1 ]; then
   sync)
     # this erases the log first, then logs the latest backup
     echo "" > "$LOG"
-    echo "$(date) - Starting Backup" | tee "$LOG"
+    echo "$(date) - Starting Sync" | tee "$LOG"
     rsync -avz --delete "$SOURCE" "$DESTINATION" | tee "$LOG"
     echo "" | tee "$LOG"
     ;;
