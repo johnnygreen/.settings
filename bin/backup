@@ -1,0 +1,53 @@
+#!/bin/sh
+
+LOG=/Users/mcepis/backup.log
+SOURCE=/Users/mcepis/
+DESTINATION=/Volumes/LaCie/Computer\ Backup
+
+if [ $# == 1 ]; then
+  case "$1" in
+  status)
+    DIVISOR=`du -sh "$SOURCE" | grep -oE '\d+'`
+    DIVIDEND=`du -sh "$DESTINATION" | grep -oE '\d+'`
+    QUOTIENT=`echo "scale=3;($DIVIDEND/$DIVISOR)*100" | bc -l`
+    
+    echo ""
+    echo "Backup System"
+    echo ""
+    echo "Source:      $SOURCE"
+    echo "Destination: $DESTINATION"
+    echo "Logfile:     $LOG"
+    echo ""
+    echo "Source Size:      $DIVISOR GB"
+    echo "Destination Size: $DIVIDEND GB"
+    echo "Status:           $QUOTIENT %"
+    echo ""
+    echo "tail -f $LOG"
+    tail -f $LOG
+    echo ""
+    ;;
+  run)
+    # this erases the log first, then logs the latest backup
+    echo "" > "$LOG"
+    echo "$(date) - Starting Backup" | tee "$LOG"
+    rsync -v -a "$SOURCE" "$DESTINATION" | tee "$LOG"
+    echo "" | tee "$LOG"
+    ;;
+  *)
+    echo "" 
+    echo "Not a valid option. Usage: backup [status|run]."
+    echo ""
+    ;;
+  esac
+else
+  echo ""
+  echo "Backup System"
+  echo ""
+  echo "backup [status|run]"
+  echo ""
+  echo "Source:      $SOURCE"
+  echo "Destination: $DESTINATION"
+  echo "Logfile:     $LOG"
+  echo ""
+fi
+
