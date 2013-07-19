@@ -1,0 +1,68 @@
+#!/bin/sh
+
+LOG=/Users/mcepis/backup.log
+SOURCE=/Users/mcepis/
+DESTINATION=/Volumes/LaCie/Computer\ Backup
+OPTIONS="s|status|r|run|sync|src|source|dst|destination"
+
+if [ $# == 1 ]; then
+  case "$1" in
+  s|status)
+    DIVISOR=`du -sh "$SOURCE" | grep -oE '\d+'`
+    DIVIDEND=`du -sh "$DESTINATION" | grep -oE '\d+'`
+    QUOTIENT=`echo "scale=6;($DIVIDEND/$DIVISOR)*100" | bc -l`
+
+    echo ""
+    echo "Backup System"
+    echo ""
+    echo "Source:      $SOURCE"
+    echo "Destination: $DESTINATION"
+    echo "Logfile:     $LOG"
+    echo ""
+    echo "Source Size:      $DIVISOR GB"
+    echo "Destination Size: $DIVIDEND GB"
+    echo "Status:           $QUOTIENT %"
+    echo ""
+    echo "tail -f $LOG"
+    echo "ctrl-C to exit"
+    tail -f $LOG
+    echo ""
+    ;;
+  r|run)
+    # this erases the log first, then logs the latest backup
+    echo "" > "$LOG"
+    echo "$(date) - Starting Backup" | tee "$LOG"
+    rsync -avz "$SOURCE" "$DESTINATION" | tee "$LOG"
+    echo "" | tee "$LOG"
+    ;;
+  sync)
+    # this erases the log first, then logs the latest backup
+    echo "" > "$LOG"
+    echo "$(date) - Starting Sync" | tee "$LOG"
+    rsync -avz --delete "$SOURCE" "$DESTINATION" | tee "$LOG"
+    echo "" | tee "$LOG"
+    ;;
+  src|source)
+    echo "$SOURCE"
+    ;;
+  dst|destination)
+    echo "$DESTINATION"
+    ;;
+  *)
+    echo ""
+    echo "Not a valid option. Usage: backup [$OPTIONS]."
+    echo ""
+    ;;
+  esac
+else
+  echo ""
+  echo "Backup System"
+  echo ""
+  echo "backup [$OPTIONS]"
+  echo ""
+  echo "Source:      $SOURCE"
+  echo "Destination: $DESTINATION"
+  echo "Logfile:     $LOG"
+  echo ""
+fi
+
