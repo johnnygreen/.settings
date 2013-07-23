@@ -8,7 +8,12 @@ commands="backup [-l|--log|log]               -- check the status of the backup 
 log=$HOME/backup.log
 
 
-## the meat
+## helper functions
+
+e()
+{
+  echo "  \033[0;31m$1\033[0m"
+}
 
 p()
 {
@@ -19,6 +24,9 @@ l()
 {
   echo "  $1" | tee "$log"
 }
+
+
+## the meat
 
 help()
 {
@@ -31,11 +39,20 @@ help()
   p ""
 }
 
+not_valid()
+{
+  p ""
+  e "Not a valid option."
+  help
+}
+
 run()
 {
   SRC=$1
   DST=$2
 
+  p ""
+  p "Backup System -- Backup"
   l ""
   l "$(date) - Starting Backup"
   rsync -avz "$SRC" "$DST" | tee "$log"
@@ -47,6 +64,8 @@ sync()
   SRC=$1
   DST=$2
 
+  p ""
+  p "Backup System -- Sync"
   l ""
   l "$(date) - Starting Sync"
   rsync -avz --delete "$SRC" "$DST" | tee "$log"
@@ -85,14 +104,6 @@ status()
   p ""
 }
 
-not_valid()
-{
-  p ""
-  p "Not a valid option."
-  p ""
-  help
-}
-
 
 ## fill the flow
 
@@ -113,15 +124,15 @@ case "$#" in
     esac
   ;;
   3)
-    src="$2"
-    dst="$3"
+    src=$2
+    dst=$3
 
     case "$1" in
       -r|--run|run)
-        run $src $dst
+        run "$src" "$dst"
       ;;
       -s|--sync|sync)
-        sync $src $dst
+        sync "$src" "$dst"
       ;;
       *)
        not_valid
