@@ -1,73 +1,132 @@
 #!/bin/sh
 
-LOG=/Users/mzwallace/backup.log
-SOURCE=/Volumes/Super\ Drive/Groups/Images/
-DESTINATION=/Volumes/Backup/Images
-OPTIONS="s|status|r|run|sync|src|source|dst|destination"
 
-if [ $# == 1 ]; then
-  case "$1" in
-  s|status)
-    DIVISOR=`du -sh "$SOURCE" | grep -oE '\d+'`
-    DIVIDEND=`du -sh "$DESTINATION" | grep -oE '\d+'`
-    QUOTIENT=`echo "scale=6;($DIVIDEND/$DIVISOR)*100" | bc -l`
+## text output and log location
 
-    echo ""
-    echo "Backup System"
-    echo ""
-    echo "Source:      $SOURCE"
-    echo "Destination: $DESTINATION"
-    echo "Logfile:     $LOG"
-    echo ""
-    echo "Source Size:      $DIVISOR GB"
-    echo "Destination Size: $DIVIDEND GB"
-    echo "Status:           $QUOTIENT %"
-    echo ""
-    echo "tail -f $LOG"
-    echo "ctrl-C to exit"
-    tail -f $LOG
-    echo ""
-    ;;
-  r|run)
-    # this erases the log first, then logs the latest backup
-    echo "" > "$LOG"
-    echo "$(date) - Starting Backup" | tee "$LOG"
-    rsync -avz "$SOURCE" "$DESTINATION" | tee "$LOG"
-    echo "" | tee "$LOG"
-    ;;
-  sync)
-    # this erases the log first, then logs the latest backup
-    echo "" > "$LOG"
-    echo "$(date) - Starting Sync" | tee "$LOG"
-    rsync -avz --delete "$SOURCE" "$DESTINATION" | tee "$LOG"
-    echo "" | tee "$LOG"
-    ;;
-  src|source)
-    echo "$SOURCE"
-    ;;
-  dst|destination)
-    echo "$DESTINATION"
-    ;;
+options="-l|--log|log|-r|--run|run|-s|--sync|sync"
+commands="backup [-l|--log|log]               -- check the status of the backup log\n  backup [-r|--run|run]   [src] [dst] -- run a one way backup\n  backup [-s|--sync|sync] [src] [dst] -- run a two way sync"
+log=$HOME/backup.log
+
+
+## the meat
+
+p()
+{
+  echo "  $1"
+}
+
+l()
+{
+  echo "  $1" | tee "$log"
+}
+
+help()
+{
+  p ""
+  p "Backup System"
+  p ""
+  p "Usage: backup [$options] [option] [option]"
+  p ""
+  p "$commands"
+  p ""
+}
+
+run()
+{
+  SRC=$1
+  DST=$2
+
+  l ""
+  l "$(date) - Starting Backup"
+  rsync -avz "$SRC" "$DST" | tee "$log"
+  l ""
+}
+
+sync()
+{
+  SRC=$1
+  DST=$2
+
+  l ""
+  l "$(date) - Starting Sync"
+  rsync -avz --delete "$SRC" "$DST" | tee "$log"
+  l ""
+}
+
+status()
+{
+  p ""
+  p "Backup Status"
+  p ""
+
+  #p "Source:      $src"
+  #p "Destination: $dst"
+  #p "Logfile:     $log"
+  #p ""
+
+  #p "Calculating ..."
+  #p ""
+  #divs=`du -sh "$src" | grep -oE '\d+'`
+  #divd=`du -sh "$dst" | grep -oE '\d+'`
+  #quot=`echo "scale=6;($divd/$divs)*100" | bc -l`
+  #p "Source Size:      $divs GB"
+  #p "Destination Size: $divd GB"
+  #p "Status:           $quot %"
+  #p ""
+
+  if [ -f $log ]; then
+    p "tail -f $log"
+    p "Ctrl-C to exit"
+    tail -f $log
+  else
+    p "$log does not exist."
+  fi
+
+  p ""
+}
+
+not_valid()
+{
+  p ""
+  p "Not a valid option."
+  p ""
+  help
+}
+
+
+## fill the flow
+
+case "$#" in
+  0)
+    help
+  ;;
+  1)
+    case "$1" in
+      -s|--status|status)
+        status
+      ;;
+      -h|--help|help)
+        help
+      ;;
+      *)
+        not_valid
+    esac
+  ;;
+  3)
+    src="$2"
+    dst="$3"
+
+    case "$1" in
+      -r|--run|run)
+        run $src $dst
+      ;;
+      -s|--sync|sync)
+        sync $src $dst
+      ;;
+      *)
+       not_valid
+    esac
+  ;;
   *)
-    echo ""
-    echo "Not a valid option. Usage: backup [$OPTIONS]."
-    echo ""
-    ;;
-  esac
-elif [ $# == 2 ]; then
-  SOURCE="$1"
-  DESTINATION="$2"
-
-  echo "$SOURCE $DESTINATION"
-else
-  echo ""
-  echo "Backup System"
-  echo ""
-  echo "backup [$OPTIONS]"
-  echo ""
-  echo "Source:      $SOURCE"
-  echo "Destination: $DESTINATION"
-  echo "Logfile:     $LOG"
-  echo ""
-fi
-
+    not_valid
+esac

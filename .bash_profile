@@ -33,7 +33,7 @@ function webroot() {
   if [ $# == 1 ]; then
     DIRECTORY=`cd "$1";pwd`
     DOCUMENTS=/Library/WebServer/Documents
-    
+
     if [ -d "$DOCUMENTS" ]; then
       sudo rm -rf "$DOCUMENTS"
     fi
@@ -60,7 +60,7 @@ function rmr() {
   fi
 }
 
-function chmod-web-recursive {
+function chmod-web-recursive() {
   if [ $# == 1 ]; then
     for i in `find $1 -type d`; do chmod 755 $i; done
     for i in `find $1 -type f`; do chmod 644 $i; done
