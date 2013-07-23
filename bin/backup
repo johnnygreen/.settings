@@ -1,8 +1,8 @@
 #!/bin/sh
 
-LOG=/Users/mcepis/backup.log
-SOURCE=/Users/mcepis/
-DESTINATION=/Volumes/LaCie/Computer\ Backup
+LOG=/Users/mzwallace/backup.log
+SOURCE=/Volumes/Super\ Drive/Groups/Images/
+DESTINATION=/Volumes/Backup/Images
 OPTIONS="s|status|r|run|sync|src|source|dst|destination"
 
 if [ $# == 1 ]; then
@@ -54,6 +54,11 @@ if [ $# == 1 ]; then
     echo ""
     ;;
   esac
+elif [ $# == 2 ]; then
+  SOURCE="$1"
+  DESTINATION="$2"
+
+  echo "$SOURCE $DESTINATION"
 else
   echo ""
   echo "Backup System"
