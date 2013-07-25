@@ -21,6 +21,7 @@ function good() {
     sudo npm update -g
     sudo gem update --system
     sudo gem update
+    composer selfupdate
   elif [ "$1" == "night" ]; then
     echo ""
     echo "  NO! Your face is a good night!"
