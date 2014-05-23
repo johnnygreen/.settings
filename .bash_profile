@@ -5,7 +5,6 @@ alias flushdns="dscacheutil -flushcache"
 alias showhidden="defaults write com.apple.finder AppleShowAllFiles TRUE && killall Finder"
 alias hidehidden="defaults write com.apple.finder AppleShowAllFiles FALSE && killall Finder"
 alias artisan="php artisan"
-alias d="bundle exec derecho"
 
 # functions
 function good() {
@@ -111,11 +110,17 @@ ulimit -n 1024
 # include rvm
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" # Load RVM function
 
+# include php-version
+source $(brew --prefix php-version)/php-version.sh && php-version 5
+
 # paths
 MYSQL=/usr/local/mysql/bin
 export PATH=$PATH:$MYSQL
 export PATH=$PATH:~/bin
 export PATH=/usr/local/bin:$PATH
+
+# gopath
+export GOPATH=$HOME/go
 
 # autocompletion
 shopt -s progcomp
@@ -125,3 +130,7 @@ for f in $(command ls ~/.node-completion); do
 done
 source ~/.git-completion.bash
 source `brew --prefix`/Library/Contributions/brew_bash_completion.sh
+
+# z
+. `brew --prefix`/etc/profile.d/z.sh
+
