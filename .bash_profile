@@ -120,7 +120,7 @@ export PATH=$PATH:~/bin
 export PATH=/usr/local/bin:$PATH
 
 # gopath
-export GOPATH=$HOME/go
+export GOPATH=$HOME/.go
 
 # autocompletion
 shopt -s progcomp
@@ -133,4 +133,3 @@ source `brew --prefix`/Library/Contributions/brew_bash_completion.sh
 
 # z
 . `brew --prefix`/etc/profile.d/z.sh
-
