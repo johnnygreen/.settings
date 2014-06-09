@@ -1,0 +1,13 @@
+#!/bin/bash
+
+function mgrep() {
+  if [ $# == 1 ]; then
+    grep -irl $1 .
+  else
+    echo ""
+    echo "  My Grep, adds -irl to the normal grep command."
+    echo ""
+    echo "  mgrep [shit]"
+    echo ""
+  fi
+}

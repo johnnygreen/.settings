@@ -1,0 +1,4 @@
+#!/bin/bash
+
+# prompt user@server:/directory$
+export PS1="\u@\h:\w$ "

@@ -5,8 +5,8 @@
   diff        = true
   interactive = true
 [user]
-	email = johnnygreen@gmail.com
-	name = Johnny Green
+  email       = johnnygreen@gmail.com
+  name        = Johnny Green
 [github]
   user        = johnnygreen
 [alias]
@@ -14,7 +14,7 @@
   unstage     = reset HEAD --
 [heroku]
   account     = johnnygreen
-[credential]	
+[credential]
   helper      = osxkeychain
 [push]
   default     = matching

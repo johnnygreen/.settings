@@ -1,0 +1,20 @@
+#!/bin/bash
+
+function webroot() {
+  if [ $# == 1 ]; then
+    DIRECTORY=`cd "$1";pwd`
+    DOCUMENTS=/Library/WebServer/Documents
+
+    if [ -d "$DOCUMENTS" ]; then
+      sudo rm -rf "$DOCUMENTS"
+    fi
+
+    sudo ln -s "$DIRECTORY" "$DOCUMENTS"
+  else
+    echo ""
+    echo "Change the Apache Webroot"
+    echo ""
+    echo "webroot [directory]"
+    echo ""
+  fi
+}

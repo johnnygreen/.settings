@@ -1,0 +1,8 @@
+#!/bin/bash
+
+# include php-version
+source $(brew --prefix php-version)/php-version.sh && php-version 5
+
+# apache libphp5.so location for currently installed
+# php-version to be used in httpd.conf on mac osx
+export LIBPHP_FILE=$(brew --prefix)/Cellar/php$(echo $(php-config --version) | head -c 1)$(echo $(php-config --version) | head -c 3 | tail -c 1)/$(php-config --version)/libexec/apache2/libphp$(echo $(php-config --version) | head -c 1).so

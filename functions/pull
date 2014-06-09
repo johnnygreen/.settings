@@ -1,0 +1,35 @@
+function pull() {
+  if [ $# == 1 ]; then
+    dir=$1
+  else
+    dir="."
+  fi
+
+  repos=()
+  
+  echo ""
+  echo "Finding repos..."
+  echo ""
+  for file in $(find $dir -type d -name .git)
+  do
+    remove_git=${file%/.git}
+    repo=$(pwd)/${remove_git#./}
+    echo "$repo"
+    repos+=($repo)
+  done
+
+  echo ""
+  read -p "Pull? [YyNn] " yn
+  echo ""
+  case $yn in
+    [Yy]* )
+      for repo in ${repos[@]}
+      do
+        cd $repo && git pull
+      done
+    ;;
+    [Nn]* ) ;;
+    * ) echo 'Incorrect input.'
+  esac
+  echo ""
+}

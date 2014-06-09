@@ -1,0 +1,4 @@
+#!/bin/bash
+
+# gopath
+export GOPATH=$HOME/.go

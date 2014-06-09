@@ -1,0 +1,13 @@
+#!/bin/bash
+
+function rmr() {
+  if [ $# == 1 ]; then
+    find . -name $1 -exec rm -rf {} \;
+  else
+    echo ""
+    echo "  Recursively delete a file in your cwd."
+    echo ""
+    echo "  rmr [filename]"
+    echo ""
+  fi
+}
