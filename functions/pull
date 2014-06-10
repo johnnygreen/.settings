@@ -21,16 +21,21 @@ function pull() {
 
   echo ""
   read -p "Pull? [YyNn] " yn
-  echo ""
   case $yn in
     [Yy]* )
+      echo " "
       for repo in ${repos[@]}
       do
         echo $repo && cd $repo && git pull && echo " "
       done
       cd $pwd
-    ;;
-    [Nn]* ) ;;
-    * ) echo 'Incorrect input.'
+      ;;
+    [Nn]* )
+      echo " " 
+      ;;
+    * )
+      echo " " 
+      echo "Incorrect input."
+      echo " " 
   esac
 }
