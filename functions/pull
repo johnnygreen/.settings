@@ -28,6 +28,7 @@ function pull() {
       do
         echo $repo && cd $repo && git pull && echo " "
       done
+      cd $pwd
     ;;
     [Nn]* ) ;;
     * ) echo 'Incorrect input.'
