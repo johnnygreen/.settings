@@ -6,14 +6,15 @@ function pull() {
   fi
 
   repos=()
-  
+  pwd=`pwd`  
+
   echo ""
   echo "Finding repos..."
   echo ""
   for file in $(find $dir -type d -name .git)
   do
-    remove_git=${file%/.git}
-    repo=$(pwd)/${remove_git#./}
+    remove_git="${file%/.git}"
+    repo="$pwd/${remove_git#./}"
     echo "$repo"
     repos+=($repo)
   done
@@ -25,11 +26,10 @@ function pull() {
     [Yy]* )
       for repo in ${repos[@]}
       do
-        cd $repo && git pull
+        echo $repo && cd $repo && git pull && echo " "
       done
     ;;
     [Nn]* ) ;;
     * ) echo 'Incorrect input.'
   esac
-  echo ""
 }
