@@ -6,7 +6,7 @@ function pull() {
   fi
 
   repos=()
-  pwd=`pwd`  
+  pwd=`pwd`
 
   echo ""
   echo "Finding repos..."
@@ -20,7 +20,7 @@ function pull() {
   done
 
   echo ""
-  read -p "Pull? [YyNn] " yn
+  read -p "Pull? [y/n] " yn
   case $yn in
     [Yy]* )
       echo " "
@@ -31,11 +31,11 @@ function pull() {
       cd $pwd
       ;;
     [Nn]* )
-      echo " " 
+      echo " "
       ;;
     * )
-      echo " " 
+      echo " "
       echo "Incorrect input."
-      echo " " 
+      echo " "
   esac
 }
