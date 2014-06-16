@@ -1,9 +1,0 @@
-# link files
-ln -s ~/.settings/.bash_profile ~
-ln -s ~/.settings/.gemrc ~
-ln -s ~/.settings/.gitconfig ~
-ln -s ~/.settings/.vimrc ~
-
-# link bins
-mkdir -p ~/bin
-ln -s ~/.settings/bin/backup ~/bin

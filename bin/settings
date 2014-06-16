@@ -1,0 +1,20 @@
+#!/bin/bash
+
+case "$1" in
+  install)
+    # link files
+    for file in $(find ~/.settings/config -type f)
+    do
+      ln -s $file ~
+    done
+
+    # link executables
+    mkdir -p ~/bin
+    
+    for file in $(find ~/.settings/bin -type f)
+    do
+      ln -s $file ~/bin
+    done
+  ;;
+esac
+
