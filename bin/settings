@@ -16,5 +16,6 @@ case "$1" in
       ln -s $file ~/bin
     done
   ;;
+  *) echo "invalid option"
 esac
 
