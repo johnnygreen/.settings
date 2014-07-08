@@ -1,3 +1,3 @@
 #!/bin/bash
 
-source ~/.settings/.git-completion.bash
+source ~/.settings/config/.git-completion.bash
