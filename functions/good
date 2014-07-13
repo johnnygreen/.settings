@@ -3,20 +3,28 @@
 function good() {
   if [ "$1" == "morning" ]; then
     echo ""
-    echo "  GOOD MORNING YOU ASSHOLE!"
+    echo "GOOD MORNING YOU ASSHOLE!"
     echo ""
-    brew up
+
+    echo "brew stuff ya'll"
+    brew update
     brew upgrade
     brew cleanup
     brew doctor
-    sudo npm update npm -g
-    sudo npm update -g
+
+    #echo "npm stuff ya'll"
+    #sudo npm update npm -g
+    #sudo npm update -g
+
+    echo "gem stuff ya'll"
     sudo gem update --system
     sudo gem update
-    composer selfupdate
+
+    echo "composer stuff ya'll"
+    sudo composer selfupdate
   elif [ "$1" == "night" ]; then
     echo ""
-    echo "  NO! Your face is a good night!"
+    echo "NO! Your face is a good night!"
     echo ""
     diskutil repairPermissions /
   fi
