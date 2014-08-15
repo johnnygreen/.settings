@@ -2,10 +2,10 @@
 
 echo ""
 echo "Zoom Replace!"
-echo ""
 
 for folder in *; do
-  echo $folder
+  echo ""
+  echo "ls $folder"
   if [ -d $folder ]; then
     svn ls "https://jgreen@mzwallace.svn.beanstalkapp.com/graphics/zoom/$folder"
     wait
