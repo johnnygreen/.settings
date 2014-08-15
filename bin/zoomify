@@ -36,8 +36,8 @@ for file in *.tif; do
   sizes[2560]=65
   count=0
 
-  sizes_indexes=( ${!sizes[@]} )
-  sizes_sorted=($(sort -n <<<"${sizes_indexes[*]}"))
+  sizes_indexes=(${!sizes[@]})
+  sizes_sorted=($(sort -n <<< "${sizes_indexes[*]}"))
 
   for i in "${sizes_sorted[@]}"; do
     echo -e "Size $i\tQuality ${sizes[$i]}\t$folder/${file%%.*}/TileGroup0/${count}-0-0.jpg"
