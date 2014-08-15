@@ -18,8 +18,7 @@ for folder in *; do
       svn import -m "Importing $folder" $folder "https://jgreen@mzwallace.svn.beanstalkapp.com/graphics/zoom/$folder"
       wait
     else
-      echo "$folder exists"
-      echo "Deleting $folder"
+      echo "$folder exists...deleting"
       svn delete -m "Replacing $folder" --force "https://jgreen@mzwallace.svn.beanstalkapp.com/graphics/zoom/$folder"
       wait
       echo ""
