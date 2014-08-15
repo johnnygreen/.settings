@@ -7,6 +7,9 @@ source "$base_dir/prompt"
 # aliases
 source "$base_dir/aliases"
 
+# misc
+source "$base_dir/misc"
+
 folders=(functions applications autocomplete)
 
 for folder in ${folders[@]}
@@ -16,3 +19,4 @@ do
     source $file
   done
 done
+
