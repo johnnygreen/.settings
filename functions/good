@@ -6,21 +6,17 @@ function good() {
     echo "GOOD MORNING YOU ASSHOLE!"
     echo ""
 
-    echo "brew stuff ya'll"
     brew update
     brew upgrade
     brew cleanup
     brew doctor
 
-    #echo "npm stuff ya'll"
-    #sudo npm update npm -g
-    #sudo npm update -g
+    sudo npm update npm -g
+    sudo npm update -g
 
-    echo "gem stuff ya'll"
     sudo gem update --system
     sudo gem update
 
-    echo "composer stuff ya'll"
     sudo composer selfupdate
   elif [ "$1" == "night" ]; then
     echo ""

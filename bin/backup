@@ -7,7 +7,6 @@ options="-l|--log|log|-r|--run|run|-s|--sync|sync"
 commands="backup [-l|--log|log]               -- check the status of the backup log\n  backup [-r|--run|run]   [src] [dst] -- run a one way backup\n  backup [-s|--sync|sync] [src] [dst] -- run a two way sync"
 log=$HOME/backup.log
 
-
 ## helper functions
 
 e()

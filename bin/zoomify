@@ -1,0 +1,57 @@
+#!/bin/bash
+
+echo ""
+echo "Zoomify!"
+echo ""
+
+if [ -z $(which gm) ]; then
+  echo "You need to install graphicsmagick before continuing ..."
+  echo ""
+  exit
+fi
+
+shopt -s nullglob
+
+if ! [ -z $1 ]; then
+  rm -rf $1
+  folder=$1
+else
+  rm -rf zoom
+  folder="zoom"
+fi
+
+mkdir $folder
+echo "Creating folder $folder"
+echo ""
+
+for file in *.tif; do
+  echo "Zooming $file"
+  mkdir -p $folder/${file%%.*}/TileGroup0
+
+  declare -a sizes
+  sizes[160]=90
+  sizes[320]=85
+  sizes[640]=85
+  sizes[1280]=75
+  sizes[2560]=65
+  count=0
+
+  sizes_indexes=( ${!sizes[@]} )
+  sizes_sorted=($(sort -n <<<"${sizes_indexes[*]}"))
+
+  for i in "${sizes_sorted[@]}"; do
+    echo -e "Size $i\tQuality ${sizes[$i]}\t$folder/${file%%.*}/TileGroup0/${count}-0-0.jpg"
+    gm convert \
+       -size ${i}X${i} \
+       -resize ${i}X${i}! \
+       -format jpg \
+       -strip \
+       -interlace Plane \
+       -quality ${sizes[$i]}% \
+       -modulate 100,110 \
+       $file \
+       $folder/${file%%.*}/TileGroup0/${count}-0-0.jpg
+    let count=count+1
+  done
+  echo ""
+done
