@@ -13,16 +13,16 @@ for folder in *; do
     echo ""
 
     if [ $error -ne 0 ]; then
-      echo "$folder does not exist"
-      echo "Importing $folder"
+      echo "$folder does not exist."
+      echo "Importing $folder."
       svn import -m "Importing $folder" $folder "https://jgreen@mzwallace.svn.beanstalkapp.com/graphics/zoom/$folder"
       wait
     else
-      echo "$folder exists...removing"
+      echo "$folder exists...removing."
       svn remove -m "Replacing $folder" --force "https://jgreen@mzwallace.svn.beanstalkapp.com/graphics/zoom/$folder"
       wait
       echo ""
-      echo "Importing $folder"
+      echo "Importing $folder."
       svn import -m "Replacing $folder" $folder "https://jgreen@mzwallace.svn.beanstalkapp.com/graphics/zoom/$folder"
       wait
     fi
