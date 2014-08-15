@@ -7,23 +7,25 @@ echo ""
 for folder in *; do
   echo $folder
   if [ -d $folder ]; then
-   svn ls https://jgreen@mzwallace.svn.beanstalkapp.com/graphics/zoom/$folder
-   wait
-   error=$?
+    svn ls https://jgreen@mzwallace.svn.beanstalkapp.com/graphics/zoom/$folder
+    wait
+    error=$?
+    echo ""
 
-   if [ $error -ne 0 ]; then
-     echo "$folder does not exist"
-     echo "Importing $folder"
-     svn import -m "Importing $folder" $folder https://jgreen@mzwallace.svn.beanstalkapp.com/graphics/zoom/$folder
-     wait
-   else
-     echo "$folder exists"
-     echo "Deleting $folder"
-     svn delete -m "Replacing $folder" --force https://jgreen@mzwallace.svn.beanstalkapp.com/graphics/zoom/$folder
-     wait
-     echo "Now Importing $folder"
-     svn import -m "Replacing $folder" $folder https://jgreen@mzwallace.svn.beanstalkapp.com/graphics/zoom/$folder
-     wait
-   fi
+    if [ $error -ne 0 ]; then
+      echo "$folder does not exist"
+      echo "Importing $folder"
+      svn import -m "Importing $folder" $folder https://jgreen@mzwallace.svn.beanstalkapp.com/graphics/zoom/$folder
+      wait
+    else
+      echo "$folder exists"
+      echo "Deleting $folder"
+      svn delete -m "Replacing $folder" --force https://jgreen@mzwallace.svn.beanstalkapp.com/graphics/zoom/$folder
+      wait
+      echo ""
+      echo "Importing $folder"
+      svn import -m "Replacing $folder" $folder https://jgreen@mzwallace.svn.beanstalkapp.com/graphics/zoom/$folder
+      wait
+    fi
   fi
 done
