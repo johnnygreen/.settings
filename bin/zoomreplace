@@ -28,3 +28,7 @@ for folder in *; do
     fi
   fi
 done
+
+echo ""
+echo "Done!"
+echo ""
