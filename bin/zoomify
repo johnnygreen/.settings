@@ -5,7 +5,7 @@ echo "Zoomify!"
 echo ""
 
 if [ -z $(which gm) ]; then
-  echo "You need to install graphicsmagick before continuing ..."
+  echo "You need to install graphics magick before continuing ..."
   echo ""
   exit
 fi
@@ -20,8 +20,8 @@ else
   folder="zoom"
 fi
 
-mkdir $folder
 echo "Creating folder $folder"
+mkdir $folder
 echo ""
 
 for file in *.tif; do
