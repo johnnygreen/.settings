@@ -4,9 +4,9 @@ echo ""
 echo "Zoom Replace!"
 
 for folder in *; do
-  echo ""
-  echo "ls $folder"
   if [ -d $folder ]; then
+    echo ""
+    echo "ls $folder"
     svn ls "https://jgreen@mzwallace.svn.beanstalkapp.com/graphics/zoom/$folder"
     wait
     error=$?
