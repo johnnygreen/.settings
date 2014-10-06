@@ -10,8 +10,7 @@ for folder in *; do
     svn ls "https://jgreen@mzwallace.svn.beanstalkapp.com/graphics/zoom/$folder"
     wait
     error=$?
-    echo ""
-
+    
     if [ $error -ne 0 ]; then
       echo "$folder does not exist."
       echo "Importing $folder."
