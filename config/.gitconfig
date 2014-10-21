@@ -20,3 +20,5 @@
   user        = johnnygreen
 [heroku]
   account     = johnnygreen
+[http]
+	sslVerify = false
