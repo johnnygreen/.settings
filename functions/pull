@@ -26,7 +26,7 @@ function pull() {
       echo " "
       for repo in ${repos[@]}
       do
-        echo $repo && cd $repo && git pull && echo " "
+        echo $repo && cd $repo && git pull --all && git remote prune origin && echo " "
       done
       cd $pwd
       ;;
