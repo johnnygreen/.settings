@@ -1,15 +1,34 @@
 #!/bin/bash
 
+function speak() {
+  echo ""
+  echo "$1"
+  echo ""
+}
+
+function update_brew() {
+  brew update
+  brew upgrade
+  brew cleanup
+  brew doctor
+}
+
+function update_php() {
+  brew unlink php`php -r "echo substr(str_replace('.', '', phpversion()), 0, 2);"`
+  brew link php$1
+  brew upgrade
+}
+
 function good() {
   if [ "$1" == "morning" ]; then
-    echo ""
-    echo "GOOD MORNING YOU ASSHOLE!"
-    echo ""
+    speak "GOOD MORNING YOU ASSHOLE!"
 
-    brew update
-    brew upgrade
-    brew cleanup
-    brew doctor
+    update_brew
+    
+    update_php 56
+    update_php 55
+    update_php 54
+    update_php 53
 
     sudo npm update npm -g
     sudo npm update -g
@@ -19,9 +38,7 @@ function good() {
 
     sudo composer selfupdate
   elif [ "$1" == "night" ]; then
-    echo ""
-    echo "NO! Your face is a good night!"
-    echo ""
+    speak "NO! Your face is a good night!"
     diskutil repairPermissions /
   fi
 }
