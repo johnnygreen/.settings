@@ -30,6 +30,19 @@ function good() {
     update_php 54
     update_php 53
 
+    # upgrade all the installed php versions
+    brew unlink php56
+    brew link php55
+    brew upgrade
+    brew unlink php55
+    brew link php54
+    brew upgrade
+    brew unlink php54
+    brew link php53
+    brew upgrade
+    brew unlink php53
+    brew link php56
+
     sudo npm update npm -g
     sudo npm update -g
 
