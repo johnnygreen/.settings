@@ -16,9 +16,10 @@
 [alias]
   history     = log --graph --all --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%cr)%C(reset) %C(white)%s%C(reset) %C(bold white)— %cn%C(reset)%C(bold yellow)%d%C(reset)' --abbrev-commit --date=relative --date-order
   unstage     = reset HEAD --
+  change-case = mv --force
 [github]
   user        = johnnygreen
 [heroku]
   account     = johnnygreen
 [http]
-	sslVerify = false
+  sslVerify = false
