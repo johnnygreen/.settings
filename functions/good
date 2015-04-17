@@ -16,7 +16,7 @@ function update_brew() {
 function update_php() {
   brew unlink php`php -r "echo substr(str_replace('.', '', phpversion()), 0, 2);"`
   brew link php$1
-  brew upgrade
+  brew upgrade php$1
 }
 
 function good() {

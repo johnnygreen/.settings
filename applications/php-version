@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # include php-version
-source $(brew --prefix php-version)/php-version.sh
+source $(brew --prefix php-version)/php-version.sh && php-version 5.5
 
 # apache libphp5.so location for currently installed
 # php-version to be used in httpd.conf on mac osx
