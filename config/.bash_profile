@@ -10,7 +10,7 @@ source "$base_dir/aliases"
 # misc
 source "$base_dir/misc"
 
-folders=(functions applications autocomplete)
+folders=(functions apps autocomplete)
 
 for folder in ${folders[@]}
 do
