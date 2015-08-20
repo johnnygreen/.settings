@@ -18,7 +18,7 @@
   unstage     = reset HEAD --
   uncommit    = reset --soft HEAD~1
   change-case = mv --force
-  scrub       = "!f() { git filter-branch --force --index-filter 'git rm --cached --ignore-unmatch $1' --prune-empty --tag-name-filter cat -- --all}; f"
+  scrub       = "!f() { filter=\"git rm --cached --ignore-unmatch $1\" git filter-branch --force --index-filter \"$filter\" --prune-empty --tag-name-filter cat -- --all; }; f"
 [github]
   user        = johnnygreen
 [heroku]
