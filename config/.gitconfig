@@ -18,9 +18,14 @@
   unstage     = reset HEAD --
   uncommit    = reset --soft HEAD~1
   change-case = mv --force
+  scrub       = "!f() { filter=\"git rm --cached --ignore-unmatch $1\" git filter-branch --force --index-filter \"$filter\" --prune-empty --tag-name-filter cat -- --all; }; f"
 [github]
   user        = johnnygreen
 [heroku]
   account     = johnnygreen
 [http]
   sslVerify = false
+[filter "lfs"]
+	clean = git-lfs clean %f
+	smudge = git-lfs smudge %f
+	required = true
