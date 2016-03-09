@@ -3,7 +3,7 @@
 # link files
 for file in $(find ~/.settings/config -type f)
 do
-  if [ ! -f $file ]; then
+  if [ ! -f ~/$(basename $file) ]; then
     ln -s $file ~
   fi
 done
@@ -15,7 +15,7 @@ fi
 
 for file in $(find ~/.settings/bin -type f)
 do
-  if [ ! -f $file ]; then
+  if [ ! -f ~/bin/$(basename $file) ]; then
     ln -s $file ~/bin
   fi
 done
