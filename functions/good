@@ -8,7 +8,7 @@ function speak() {
 
 function update_php() {
   brew unlink php`php -r "echo substr(str_replace('.', '', phpversion()), 0, 2);"`
-  brew upgrade
+  brew upgrade php$1
 }
 
 function good() {
@@ -17,17 +17,17 @@ function good() {
 
     brew update
 
-    update_php 53
-    update_php 54
-    update_php 55
+    VERSION=`php -r "echo substr(str_replace('.', '', phpversion()), 0, 2);"`
+
     update_php 56
+    update_php 70
 
     brew upgrade
     brew cleanup
     brew doctor
 
-    sudo npm update npm -g
-    sudo npm update -g
+    npm update npm -g
+    npm update -g
 
     sudo gem update --system
     sudo gem update

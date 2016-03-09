@@ -1,0 +1,21 @@
+#!/bin/bash
+
+# link files
+for file in $(find ~/.settings/config -type f)
+do
+  if [ ! -f $file ]; then
+    ln -s $file ~
+  fi
+done
+
+# link executables
+if [ ! -d ~/bin ]; then
+  mkdir -p ~/bin
+fi
+
+for file in $(find ~/.settings/bin -type f)
+do
+  if [ ! -f $file ]; then
+    ln -s $file ~/bin
+  fi
+done

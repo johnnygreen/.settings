@@ -7,9 +7,6 @@ source "$base_dir/prompt"
 # aliases
 source "$base_dir/aliases"
 
-# misc
-source "$base_dir/misc"
-
 folders=(functions apps autocomplete)
 
 for folder in ${folders[@]}
@@ -19,7 +16,3 @@ do
     source $file
   done
 done
-
-
-export NVM_DIR="/Users/jgreen/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
