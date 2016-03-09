@@ -9,7 +9,7 @@ function pull() {
   pwd=`pwd`
 
   echo ""
-  echo "Finding repos..."
+  echo " Finding repos..."
   echo ""
   for file in $(find $dir -type d -name .git)
   do
@@ -35,7 +35,7 @@ function pull() {
       ;;
     * )
       echo " "
-      echo "Incorrect input."
+      echo " Incorrect input."
       echo " "
   esac
 }

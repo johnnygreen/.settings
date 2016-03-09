@@ -12,9 +12,9 @@ function webroot() {
     sudo ln -s "$DIRECTORY" "$DOCUMENTS"
   else
     echo ""
-    echo "Change the Apache Webroot"
+    echo " Change the Apache Webroot"
     echo ""
-    echo "webroot [directory]"
+    echo " webroot [directory]"
     echo ""
   fi
 }
