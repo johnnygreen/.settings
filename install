@@ -19,3 +19,8 @@ do
     ln -s $file ~/bin
   fi
 done
+
+if [ ! -f ~/.profile ]; then
+  ln -s ~/.settings/profile ~/.profile
+  source ~/.profile
+fi
