@@ -2,4 +2,4 @@
 
 # go
 export GOPATH=~/.go:$PWD
-export PATH=$GOPATH/bin:$PATH
+export PATH=$PATH:~/.go/bin
