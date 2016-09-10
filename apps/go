@@ -1,6 +1,5 @@
 #!/bin/bash
 
 # go
-export GOPATH=~/.go
+export GOPATH=~/Sites/golang
 export PATH=$GOPATH:bin:$PATH
-export GOPATH=$GOPATH:$PWD
