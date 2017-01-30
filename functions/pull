@@ -1,3 +1,5 @@
+#!/bin/bash
+
 function pull() {
   if [ $# == 1 ]; then
     dir=$1
