@@ -1,3 +1,4 @@
+#!/bin/bash
 
 base_dir=~/.settings
 
