@@ -1,0 +1,28 @@
+#!/bin/bash
+
+function mirror() {
+  origin=`git remote get-url origin 2> /dev/null`
+
+  if [ "$origin" == "" ]; then
+    echo "You're not in a git repository."
+    return
+  fi
+
+  mirror=`git remote get-url mirror 2> /dev/null`
+
+  if [ "$mirror" == "" ]; then
+    echo "You don't have a 'mirror' remote set up."
+    return
+  fi
+
+  echo "Mirror $origin to $mirror?"
+  read choice
+  if [[ $choice =~ ^[Yy]$ ]]
+  then
+    git clone --mirror $origin .mirror-temp
+    cd .mirror-temp
+    git push --mirror $mirror
+    cd ..
+    rm -rf .mirror-temp
+  fi
+}
