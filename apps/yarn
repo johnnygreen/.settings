@@ -1,0 +1,4 @@
+#!/bin/bash
+
+# yarn
+export PATH="$HOME/.yarn/bin:$PATH"
