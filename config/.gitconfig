@@ -17,7 +17,7 @@
   history     = log --graph --all --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%cr)%C(reset) %C(white)%s%C(reset) %C(bold white)— %cn%C(reset)%C(bold yellow)%d%C(reset)' --abbrev-commit --date=relative --date-order
   unstage     = reset HEAD --
   uncommit    = reset --soft HEAD~1
-  task        = "!f() { git checkout develop && git checkout -b $1 && git push origin $1 && git branch --set-upstream-to=origin/$1 $1; }; f"
+  task        = "!f() { git checkout develop && git pull origin develop && git checkout -b $1 && git push origin $1 && git branch --set-upstream-to=origin/$1 $1; }; f"
   contains    = "!f() { git branch --contains $1; }; f"
   change-case = mv --force
   scrub       = "!f() { filter=\"git rm --cached --ignore-unmatch $1\" git filter-branch --force --index-filter \"$filter\" --prune-empty --tag-name-filter cat -- --all; }; f"
