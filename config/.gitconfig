@@ -21,6 +21,7 @@
   contains    = "!f() { git branch --contains $1; }; f"
   change-case = mv --force
   scrub       = "!f() { filter=\"git rm --cached --ignore-unmatch $1\" git filter-branch --force --index-filter \"$filter\" --prune-empty --tag-name-filter cat -- --all; }; f"
+  delete-tags = "!f() { git tag -l | xargs -n 1 git push --delete origin && git tag -l | xargs git tag -d; }; f"
 [github]
   user        = johnnygreen
 [heroku]
