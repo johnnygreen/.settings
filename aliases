@@ -1,6 +1,6 @@
 #!/bin/bash
 
-alias l="ll"
+alias l="ll bin"
 alias ll="ls -laFGsh"
 alias flushdns="dscacheutil -flushcache"
 alias showhidden="defaults write com.apple.finder AppleShowAllFiles TRUE && killall Finder"
