@@ -23,13 +23,13 @@
   scrub       = "!f() { filter=\"git rm --cached --ignore-unmatch $1\" git filter-branch --force --index-filter \"$filter\" --prune-empty --tag-name-filter cat -- --all; }; f"
   delete-tags = "!f() { git tag -l | xargs -n 1 git push --delete origin && git tag -l | xargs git tag -d; }; f"
 [github]
-  user        = johnnygreen
+  user = johnnygreen
 [heroku]
-  account     = johnnygreen
+  account = johnnygreen
 [http]
   sslVerify = false
 [filter "lfs"]
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
+  clean = git-lfs clean -- %f
+  smudge = git-lfs smudge -- %f
   required = true
-	process = git-lfs filter-process
+  process = git-lfs filter-process
