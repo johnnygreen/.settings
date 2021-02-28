@@ -1,26 +1,26 @@
 [core]
-  ignorecase  = false
+  ignorecase = false
 [color]
-  status      = true
-  branch      = true
-  ui          = true
-  diff        = true
+  status = true
+  branch = true
+  ui = true
+  diff = true
   interactive = true
 [user]
-  email       = johnnygreen@gmail.com
-  name        = Johnny Green
+	email = johnnygreen@gmail.com
+	name = Johnny Green
 [credential]
-  helper      = osxkeychain
+  helper = osxkeychain
 [push]
-  default     = matching
+  default = matching
 [alias]
-  history     = log --graph --all --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%cr)%C(reset) %C(white)%s%C(reset) %C(bold white)— %cn%C(reset)%C(bold yellow)%d%C(reset)' --abbrev-commit --date=relative --date-order
-  unstage     = reset HEAD --
-  uncommit    = reset --soft HEAD~1
-  task        = "!f() { name=${1:?'Missing required argument 1, task name'}; branch=${2:-develop}; git checkout $branch; git pull origin $branch; git checkout -b $name; git push origin $name; git branch --set-upstream-to=origin/$name $name; }; f"
-  contains    = "!f() { git branch --contains $1; }; f"
+  history = log --graph --all --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%cr)%C(reset) %C(white)%s%C(reset) %C(bold white)— %cn%C(reset)%C(bold yellow)%d%C(reset)' --abbrev-commit --date=relative --date-order
+  unstage = reset HEAD --
+  uncommit = reset --soft HEAD~1
+  task = "!f() { name=${1:?'Missing required argument 1, task name'}; branch=${2:-develop}; git checkout $branch; git pull origin $branch; git checkout -b $name; git push origin $name; git branch --set-upstream-to=origin/$name $name; }; f"
+  contains = "!f() { git branch --contains $1; }; f"
   change-case = mv --force
-  scrub       = "!f() { filter=\"git rm --cached --ignore-unmatch $1\" git filter-branch --force --index-filter \"$filter\" --prune-empty --tag-name-filter cat -- --all; }; f"
+  scrub = "!f() { filter=\"git rm --cached --ignore-unmatch $1\" git filter-branch --force --index-filter \"$filter\" --prune-empty --tag-name-filter cat -- --all; }; f"
   delete-tags = "!f() { git tag -l | xargs -n 1 git push --delete origin && git tag -l | xargs git tag -d; }; f"
 [github]
   user = johnnygreen

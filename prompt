@@ -1,4 +1,8 @@
 #!/bin/bash
 
 # prompt user@server:/directory$
-export PS1="\u@\h:\w$ "
+if test -n "$ZSH_VERSION"; then
+  export PROMPT="%n@%m:%~$ "
+else
+  export PS1="\u@\h:\w$ "
+fi

@@ -20,7 +20,14 @@ do
   fi
 done
 
-if [ ! -f ~/.profile ]; then
-  ln -s ~/.settings/profile ~/.profile
-  source ~/.profile
+if [ ! -f ~/.profile ] && [ ! -f ~/.zprofile ]; then
+  if test -n "$ZSH_VERSION"; then
+    ln -s ~/.settings/profile ~/.zprofile
+    source ~/.zprofile
+    echo "Installing for ZSH"
+  else
+    ln -s ~/.settings/profile ~/.profile
+    source ~/.profile
+    echo "Installing for BASH"
+  fi
 fi
