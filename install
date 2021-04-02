@@ -1,33 +1,59 @@
 #!/bin/bash
 
+if [ -n "$ZSH_VERSION" ]; then
+  echo "Installing for ZSH"
+elif [ -n "$BASH_VERSION" ]; then
+  echo "Installing for BASH"
+else
+  echo "Could not determine shell.  Make sure to run using 'source'"
+  exit 0
+fi
+
 # link files
 for file in $(find ~/.settings/config -type f)
 do
   if [ ! -f ~/$(basename $file) ]; then
     ln -s $file ~
+    echo "$file linked"
+  else
+    echo "$file exists"
   fi
 done
 
 # link executables
 if [ ! -d ~/bin ]; then
   mkdir -p ~/bin
+  echo "~/bin folder created"
+else
+  echo "~/bin folder exists"
 fi
 
 for file in $(find ~/.settings/bin -type f)
 do
   if [ ! -f ~/bin/$(basename $file) ]; then
     ln -s $file ~/bin
+    echo "$file linked"
+  else
+    echo "$file exists"
   fi
 done
 
-if [ ! -f ~/.profile ] && [ ! -f ~/.zprofile ]; then
-  if test -n "$ZSH_VERSION"; then
+if [ -n "$ZSH_VERSION" ]; then
+  if [ ! -f ~/.zprofile ]; then
     ln -s ~/.settings/profile ~/.zprofile
-    source ~/.zprofile
-    echo "Installing for ZSH"
+    ln -s ~/.settings/zshrc ~/.zshrc
+    source ~/.zshrc
+    echo "~/.zprofile linked"
+    echo "~/.zshrc linked"
   else
+    echo "~/.zprofile exists"
+  fi
+else
+  if [ ! -f ~/.profile ]; then
     ln -s ~/.settings/profile ~/.profile
     source ~/.profile
-    echo "Installing for BASH"
+    echo "~/.profile linked"
+  else
+    echo "~/.profile exists"
   fi
 fi
