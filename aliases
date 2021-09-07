@@ -7,3 +7,5 @@ alias showhidden="defaults write com.apple.finder AppleShowAllFiles TRUE && kill
 alias hidehidden="defaults write com.apple.finder AppleShowAllFiles FALSE && killall Finder"
 alias artisan="php artisan"
 alias lscleanup="/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -kill -r -domain local -domain system -domain user && killall Finder"
+alias compile="npm run compile:scss & npm run compile:js & npm run compile:svg & npm run compile:fonts"
+alias brewfix="sudo chown -R $(whoami) $(brew --prefix)/*"
