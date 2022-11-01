@@ -57,3 +57,8 @@ else
     echo "~/.profile exists"
   fi
 fi
+
+echo "Installing brew ..."
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+brew install git nvm z httpie httpstat speedtest-cli
