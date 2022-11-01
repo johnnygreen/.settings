@@ -8,8 +8,8 @@
   diff = true
   interactive = true
 [user]
-	email = johnny.green@capgemini.com
-	name = Johnny Green
+  email = johnny.green@salesforce.com
+  name = Johnny Green
 [credential]
   helper = osxkeychain
 [push]
@@ -38,10 +38,10 @@
 [pull]
   ff = only
 [difftool "sourcetree"]
-	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path =
+  cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+  path =
 [mergetool "sourcetree"]
-	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-	trustExitCode = true
+  cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+  trustExitCode = true
 [commit]
-	template = /Users/jwork/.stCommitMsg
+  template = /Users/jwork/.stCommitMsg
