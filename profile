@@ -2,10 +2,7 @@
 
 base_dir=~/.settings
 
-# prompt
-source "$base_dir/prompt"
-
-folders=(functions apps autocomplete)
+folders=(functions apps)
 
 for folder in ${folders[@]}
 do
@@ -15,6 +12,8 @@ do
   done
 done
 
+# prompt
+source "$base_dir/prompt"
+
 # aliases
 source "$base_dir/aliases"
-

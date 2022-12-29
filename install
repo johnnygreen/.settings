@@ -39,14 +39,14 @@ do
 done
 
 if [ -n "$ZSH_VERSION" ]; then
-  if [ ! -f ~/.zprofile ]; then
-    ln -s ~/.settings/profile ~/.zprofile
+  if [ ! -f ~/.zshrc ]; then
+    # ln -s ~/.settings/profile ~/.zprofile
     ln -s ~/.settings/zshrc ~/.zshrc
     source ~/.zshrc
-    echo "~/.zprofile linked"
+    # echo "~/.zprofile linked"
     echo "~/.zshrc linked"
   else
-    echo "~/.zprofile exists"
+    echo "~/.zshrc exists"
   fi
 else
   if [ ! -f ~/.profile ]; then

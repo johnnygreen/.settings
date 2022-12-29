@@ -1,9 +1,19 @@
 #!/bin/bash
 
-# compaudit
-autoload -Uz compinit
-compinit -i
+base_dir=~/.settings
 
-# export PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
+folders=(functions apps)
 
-source ~/.zprofile
+for folder in ${folders[@]}
+do
+  for file in $(find $base_dir/$folder -type f)
+  do
+    source $file
+  done
+done
+
+# prompt
+source "$base_dir/prompt"
+
+# aliases
+source "$base_dir/aliases"

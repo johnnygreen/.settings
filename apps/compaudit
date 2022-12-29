@@ -1,0 +1,5 @@
+#!/bin/bash
+
+# compaudit
+autoload -Uz compinit
+compinit -i
