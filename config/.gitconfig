@@ -8,8 +8,8 @@
   diff = true
   interactive = true
 [user]
-  email = johnny.green@salesforce.com
-  name = Johnny Green
+	email = johnny.green@salesforce.com
+	name = Johnny Green
 [credential]
   helper = osxkeychain
 [push]
