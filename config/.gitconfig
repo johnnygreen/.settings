@@ -1,6 +1,6 @@
 [core]
   ignorecase = false
-	excludesfile = /Users/jwork/.gitignore
+	excludesFile = ~/.gitignore
 [color]
   status = true
   branch = true
@@ -10,6 +10,7 @@
 [user]
 	email = johnny.green@salesforce.com
 	name = Johnny Green
+	signingkey = 2390D4012510AC73
 [credential]
   helper = osxkeychain
 [push]
@@ -44,4 +45,4 @@
   cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
   trustExitCode = true
 [commit]
-  template = /Users/jwork/.stCommitMsg
+  template = ~/.stCommitMsg

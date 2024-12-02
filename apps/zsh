@@ -1,0 +1,3 @@
+#!/bin/bash
+
+[ -f ".zshenv" ] && source .zshenv
